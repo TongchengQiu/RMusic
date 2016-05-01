@@ -1,6 +1,8 @@
 # run
-**need node+**
+**need node4.0+**
 ```
+npm install -d
+
 // dev
 npm run dev
 
