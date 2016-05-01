@@ -1,4 +1,4 @@
-import count from './count';
-export default {
-  count
-};
+import { combineReducers } from 'redux';
+import user from './user';
+
+export default combineReducers({ user });
