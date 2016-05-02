@@ -15,10 +15,10 @@ export default [
         path: 'home', component: Home
       },
       {
-        path: 'login', component: Register
+        path: 'login', component: Login
       },
       {
-        path: 'register', component: Login
+        path: 'register', component: Register
       }
     ]
   },

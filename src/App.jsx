@@ -8,17 +8,21 @@ import Header from './components/Header';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    props.loginIn('aa0a', 'sdsa');
+    props.judgeLogin();
+    setTimeout(() => {
+      props.login('qwe', 'qwe');
+    }, 100);
   }
 
   render() {
     return (
       <div className="app">
-        <Header />
+        <Header
+          username={this.props.user.get('username')}
+          logout={() => { this.props.logout(); }}
+        />
         <div style={{ marginTop: '1.5em' }}>
-          {this.props.children && React.cloneElement(this.props.children, {
-            isLogging: this.props.user.get('isLogging')
-          })}
+          {this.props.children}
         </div>
       </div>
     );
@@ -30,7 +34,8 @@ export default connect(
     user: state.user
   }),
   dispatch => ({
-    loginIn: (...args) => dispatch(actions.user.login(...args)),
-    loginOut: (...args) => dispatch(actions.user.logout(...args))
+    judgeLogin: (...args) => dispatch(actions.user.judgeLogin(...args)),
+    logout: () => dispatch(actions.user.logout()),
+    login: (...args) => dispatch(actions.user.login(...args)),
   })
 )(App);
