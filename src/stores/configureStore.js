@@ -1,9 +1,8 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { routerReducer } from 'react-router-redux';
+import { createStore, applyMiddleware } from 'redux';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
 import Immutable from 'immutable';
-import roucers from '../reducers';
+import rootReducer from '../reducers';
 
 const logger = createLogger({
   stateTransformer: (state) => {
@@ -26,17 +25,13 @@ const createStoreWithMiddleware = applyMiddleware(
 
 export default function configureStore(initialState = {}) {
   const store = createStoreWithMiddleware(
-    combineReducers({
-      roucers,
-      routing: routerReducer
-    }),
+    rootReducer,
     initialState
   );
-
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('../reducers', () => {
-      const nextReducer = roucers;
+      const nextReducer = rootReducer;
       store.replaceReducer(nextReducer);
     });
   }

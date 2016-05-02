@@ -8,16 +8,16 @@ import Header from './components/Header';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    props.loginIn('aaa', 'sdsa');
+    props.loginIn('aa0a', 'sdsa');
   }
 
   render() {
     return (
-      <div>
+      <div className="app">
         <Header />
         <div style={{ marginTop: '1.5em' }}>
           {this.props.children && React.cloneElement(this.props.children, {
-            test: 122323
+            isLogging: this.props.user.get('isLogging')
           })}
         </div>
       </div>

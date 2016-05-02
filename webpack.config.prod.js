@@ -59,20 +59,24 @@ module.exports = {
         removeAttributeQuotes: true
       }
     }),
+    // new webpack.DefinePlugin({
+    //   'process.env': {
+    //     NODE_ENV: '"production"'
+    //   }
+    // }),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false,
+      },
+    }),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"'
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
+        'NODE_ENV': JSON.stringify('production')
+      },
     }),
     new webpack.optimize.OccurenceOrderPlugin()
   ],
   resolve: {
     extensions: ['', '.js', '.jsx'],
-  },
-  devtool: '#eval-source-map',
+  }
 };

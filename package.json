@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist",
-    "build": "npm run clean && NODE_ENV=development webpack --config webpack.config.prod.js --progress --colors",
+    "build": "npm run clean && NODE_ENV=production webpack --config webpack.config.prod.js --progress --colors",
     "dev": "NODE_ENV=development webpack-dev-server --config webpack.config.dev.js --devtool eval --progress --hot --colors",
     "validate": "npm ls"
   },

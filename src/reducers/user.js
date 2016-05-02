@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
 import { Map } from 'immutable';
 import * as constants from '../constants';
 
@@ -20,4 +20,4 @@ function user(state = initialState, action) {
   }
 }
 
-export default combineReducers({ user });
+export default user;
