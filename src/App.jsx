@@ -10,7 +10,7 @@ class App extends React.Component {
     super(props);
     props.judgeLogin();
     setTimeout(() => {
-      props.login('qwe', 'qwe');
+      props.login('qwe1', 'qwe');
     }, 100);
   }
 

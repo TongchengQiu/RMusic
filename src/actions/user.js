@@ -16,19 +16,21 @@ export function login(username, password) {
     dispatch({
       type: constants.LOGGING
     });
+    AV.User.logOut();
     AV.User.logIn(username, password)
     .then((user) => {
       console.log(user);
+      browserHistory.replace('/home');
       dispatch({
         type: constants.LOGGED_IN,
         username,
       });
     })
-    .catch((error) => {
-      console.log(error);
+    .catch((err) => {
+      console.log(err);
       dispatch({
         type: constants.LOGIN_FAILED,
-        error,
+        error: err.code,
       });
     });
   };
@@ -36,11 +38,11 @@ export function login(username, password) {
 
 export function logout() {
   return dispatch => {
+    AV.User.logOut();
+    browserHistory.replace('/login');
     dispatch({
       type: constants.LOGGED_OUT
     });
-    AV.User.logOut();
-    browserHistory.replace('/login');
   };
 }
 
