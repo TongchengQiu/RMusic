@@ -20,7 +20,15 @@ class App extends React.Component {
           username={this.props.user.get('username')}
           logout={() => { this.props.logout(); }}
         />
-        {this.props.children}
+        <div
+          className="wrap"
+          style={{
+            width: '100%',
+            height: '100%'
+          }}
+        >
+          {this.props.children}
+        </div>
       </div>
     );
   }
