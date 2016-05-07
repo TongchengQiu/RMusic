@@ -1,0 +1,45 @@
+@import "../../assets/styles/variables.scss";
+
+.header {
+  width: 100%;
+  height: 50px;
+  background: $color-main;
+  .back-btn {
+    float: left;
+    position: relative;
+    height: 50px;
+    width: 50px;
+    border: 0;
+    line-height: 50px;
+    background: none;
+    outline: none;
+    &:before, &:after {
+      content: ' ';
+      display: block;
+      position: absolute;
+      background: #fff;
+      width: 20px;
+      height: 2px;
+      left: 10px;
+    }
+    &:before {
+      top: 18px;
+      transform: rotate(-40deg);
+    }
+    &:after {
+      bottom: 18px;
+      transform: rotate(40deg);
+    }
+    &:active {
+      background: darken($color-main, 10%);
+    }
+  }
+  a {
+    float: right;
+    font-size: 15px;
+    line-height: 20px;
+    color: #fff;
+    margin: 15px 10px;
+    cursor: pointer;
+  }
+}

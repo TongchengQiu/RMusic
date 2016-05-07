@@ -5,6 +5,8 @@ import actions from './actions';
 
 import Header from './components/Header';
 
+require('./assets/styles/main.scss');
+
 class App extends React.Component {
   constructor(props) {
     super(props);
