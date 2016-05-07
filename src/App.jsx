@@ -11,9 +11,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     props.judgeLogin();
-    setTimeout(() => {
-      props.login('qwe1', 'qwe');
-    }, 100);
   }
 
   render() {
@@ -23,9 +20,7 @@ class App extends React.Component {
           username={this.props.user.get('username')}
           logout={() => { this.props.logout(); }}
         />
-        <div style={{ marginTop: '1.5em' }}>
-          {this.props.children}
-        </div>
+        {this.props.children}
       </div>
     );
   }

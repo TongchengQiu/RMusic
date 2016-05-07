@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import actions from '../../actions';
+
+require('./index.scss');
 
 class Login extends React.Component {
   constructor(props) {
@@ -37,33 +40,40 @@ class Login extends React.Component {
     const { user } = this.props;
     return (
       <div className="view-login">
-        {user.get('isLogining') && <div className="loading">asdsad</div>}
-        <form>
+        <form className="form-login">
           <div className="input-group">
             <input
+              className="ipt"
               type="text"
               name="username"
+              placeholder="用户名"
+              autoFocus="true"
               value={username}
               onChange={(e) => { this.handleUsernameChange(e); }}
             />
-            {usernameErr && <span className="err">{usernameErr}</span>}
+          {usernameErr && <div className="err">{usernameErr}</div>}
           </div>
           <div className="input-group">
             <input
+              className="ipt"
               type="password"
               name="password"
+              placeholder="密码"
               value={password}
               onChange={(e) => { this.handlePasswordChange(e); }}
             />
-            {passwordErr && <span className="err">{passwordErr}</span>}
+            {passwordErr && <div className="err">{passwordErr}</div>}
           </div>
           <div className="input-group">
             <input
+              className="submit"
               type="submit"
-              value="登录"
+              value={`登录${(user.get('isLogining') ? '...' : '')}`}
+              disabled={user.get('isLogining')}
               onClick={(e) => { this.handleSubmit(e); }}
             />
-          {user.get('loginError') && <span className="err">{user.get('loginError')}</span>}
+            <Link className="link-to" to="/register">去注册一个</Link>
+            {user.get('loginError') && <div className="err">{user.get('loginError')}</div>}
           </div>
         </form>
       </div>

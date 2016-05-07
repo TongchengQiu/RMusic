@@ -23,10 +23,9 @@ export function login(username, password) {
       });
     })
     .catch((err) => {
-      console.log(err);
       dispatch({
         type: constants.LOGIN_FAILED,
-        error: err.code,
+        error: err.message,
       });
     });
   };
