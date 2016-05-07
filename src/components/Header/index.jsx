@@ -23,6 +23,7 @@ export default function Header({ username, logout }) {
       {username && <Link to="/home" className="username">{username}</Link>}
       {!username && <Link to="/register">注册</Link>}
       {!username && <Link to="/login">登录</Link>}
+      <Link to="/">首页</Link>
     </header>
   );
 }
