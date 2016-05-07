@@ -1,0 +1,229 @@
+@import "../../assets/styles/variables.scss";
+
+.music-player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 75px;
+  background: $color-player-bg;
+  color: #fff;
+  .options-box {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0 5px 0;
+    height: 40px;
+    &>div {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .play-btn {
+      position: relative;
+      width: 30px;
+      height: 30px;
+      border: 2px solid rgba(255, 255, 255, .7);
+      border-radius: 15px;
+      cursor: pointer;
+      margin: 0 12px;
+      &.play:after {
+        content: ' ';
+        display: block;
+        position: absolute;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        border-left: 14px solid rgba(255, 255, 255, .7);
+        left: 8px;
+        top: 5px;
+      }
+      &:hover {
+        border: 2px solid rgba(255, 255, 255, .85);
+        &.play:after {
+          border-left: 14px solid rgba(255, 255, 255, .85);
+        }
+        &.pause:after, &.pause:before {
+          background: rgba(255, 255, 255, .85);
+        }
+      }
+      &:active {
+        border: 2px solid rgba(255, 255, 255, 1);
+        &.play:after {
+          border-left: 14px solid rgba(255, 255, 255, 1);
+        }
+        &.pause:after, &.pause:before {
+          background: rgba(255, 255, 255, 1);
+        }
+      }
+      &.pause {
+        &:after, &:before {
+          content: ' ';
+          display: block;
+          position: absolute;
+          width: 2px;
+          height: 14px;
+          background: rgba(255, 255, 255, 0.7);
+          top: 6px;
+        }
+        &:after {
+          left: 9px;
+        }
+        &:before {
+          right: 9px;
+        }
+      }
+    }
+    .prev-btn, .next-btn {
+      position: relative;
+      width: 26px;
+      height: 26px;
+      border: 2px solid rgba(255, 255, 255, .5);
+      border-radius: 13px;
+      cursor: pointer;
+      &:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        top: 6px;
+        width: 2px;
+        height: 10px;
+        background: rgba(255, 255, 255, .5);
+      }
+      &:after {
+        content: ' ';
+        display: block;
+        position: absolute;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        top: 6px;
+      }
+      &:hover {
+        border: 2px solid rgba(255, 255, 255, .75);
+      }
+      &:active {
+        border: 2px solid rgba(255, 255, 255, .9);
+      }
+      &.prev-btn {
+        &:after {
+          right: 6px;
+          border-right: 7px solid rgba(255, 255, 255, .5);
+        }
+        &:before {
+          left: 6px;
+        }
+        &:hover:after {
+          border-right: 7px solid rgba(255, 255, 255, .75);
+        }
+        &:hover:before {
+          background: rgba(255, 255, 255, .75);
+        }
+        &:active:after {
+          border-right: 7px solid rgba(255, 255, 255, .9);
+        }
+        &:active:before {
+          background: rgba(255, 255, 255, .9);
+        }
+      }
+      &.next-btn {
+        &:after {
+          left: 6px;
+          border-left: 7px solid rgba(255, 255, 255, .5);
+        }
+        &:before {
+          right: 6px;
+        }
+        &:hover:after {
+          border-left: 7px solid rgba(255, 255, 255, .75);
+        }
+        &:hover:before {
+          background: rgba(255, 255, 255, .75);
+        }
+        &:active:after {
+          border-left: 7px solid rgba(255, 255, 255, .9);
+        }
+        &:active:before {
+          background: rgba(255, 255, 255, .9);
+        }
+      }
+    }
+  }
+
+  .progress-box {
+    position: relative;
+    text-align: center;
+    height: 20px;
+    line-height: 20px;
+    .music-name {
+      position: absolute;
+      right: 72%;
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 14px;
+    }
+    .progress-bar {
+      display: inline-block;
+      vertical-align: middle;
+      height: 3px;
+      width: 40%;
+      background: rgba(140, 140, 140, .7);
+      .progress-inner {
+        width: 0%;
+        height: 100%;
+        background: $color-main;
+      }
+    }
+    .show-times {
+      position: absolute;
+      left: 72%;
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 12px;
+      color: #ccc;
+    }
+
+    .volume-box {
+      display: inline-block;
+      position: absolute;
+      left: 72%;
+      vertical-align: middle;
+      font-size: 12px;
+      color: #ccc;
+      margin-left: 8em;
+      .name {
+        cursor: pointer;
+        &:hover {
+          color: darken(#ccc, 10%);
+        }
+      }
+      .adjust-box {
+        position: absolute;
+        bottom: 2em;
+        width: 40px;
+        background: $color-player-volume;
+        list-style: none;
+        left: 50%;
+        margin-left: -20px;
+        padding: 6px;
+        padding-top: 0;
+        li {
+          width: 100%;
+          height: 10px;
+          background: rgba(255, 255, 255, .7);
+          margin: 8px 0;
+          cursor: pointer;
+          &.active {
+            background: rgba(255, 255, 255, 1);
+          }
+        }
+      }
+      .mute-btn {
+        margin-left: 10px;
+        cursor: pointer;
+      }
+    }
+  }
+  .play-type {
+    position: absolute;
+    top: 10px;
+    right: 20%;
+    cursor: pointer;
+  }
+}
