@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import actions from '../../actions';
+
+require('./index.scss');
 
 class Register extends React.Component {
   constructor(props) {
@@ -37,12 +40,14 @@ class Register extends React.Component {
     const { user } = this.props;
     return (
       <div className="view-register">
-        {user.get('isRegistering') && <div className="loading">asdsad</div>}
-        <form>
+        <form className="form-register">
           <div className="input-group">
             <input
+              className="ipt"
               type="text"
+              placeholder="用户名"
               name="username"
+              autoFocus="true"
               value={username}
               onChange={(e) => { this.handleUsernameChange(e); }}
             />
@@ -50,6 +55,8 @@ class Register extends React.Component {
           </div>
           <div className="input-group">
             <input
+              className="ipt"
+              placeholder="密码"
               type="password"
               name="password"
               value={password}
@@ -59,13 +66,16 @@ class Register extends React.Component {
           </div>
           <div className="input-group">
             <input
+              className="submit"
               type="submit"
-              value="注册"
+              value={`注册${(user.get('isRegistering') ? '...' : '')}`}
+              disabled={user.get('isRegistering')}
               onClick={(e) => { this.handleSubmit(e); }}
             />
             {user.get('registerError') && <span className="err">{user.get('registerError')}</span>}
+            <Link className="link-to" to="/login">登录</Link>
           </div>
-          {user.get('isRegisterSuccess') && <div className="success-tip">注册成功</div>}
+          {!user.get('isRegisterSuccess') && <div className="success-tip">注册成功</div>}
         </form>
       </div>
     );
