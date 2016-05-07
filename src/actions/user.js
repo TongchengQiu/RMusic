@@ -4,10 +4,7 @@ import AV from 'avoscloud-sdk';
 
 const appId = 'OsU9BY2wgNjAgBMsfGjdBgW5-gzGzoHsz';
 const appKey = 'JV4qaALRgFh8rL3tJVf2KBgr';
-AV.init({
-  appId,
-  appKey
-});
+AV.initialize(appId, appKey);
 window.AV = AV;
 
 // login begin
@@ -16,7 +13,6 @@ export function login(username, password) {
     dispatch({
       type: constants.LOGGING
     });
-    AV.User.logOut();
     AV.User.logIn(username, password)
     .then((user) => {
       console.log(user);

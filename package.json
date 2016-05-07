@@ -13,7 +13,7 @@
   "license": "ISC",
   "devDependencies": {
     "autoprefixer-loader": "^3.2.0",
-    "avoscloud-sdk": "git+https://github.com/leancloud/javascript-sdk.git",
+    "avoscloud-sdk": "^0.6.10",
     "babel-core": "^6.7.7",
     "babel-eslint": "^6.0.4",
     "babel-loader": "^6.2.4",
