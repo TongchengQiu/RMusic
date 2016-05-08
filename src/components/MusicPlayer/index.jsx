@@ -39,7 +39,11 @@ export default class MusicPlayer extends React.Component {
   }
 
   audioEnd() {
-    this.handleNext();
+    if (this.state.isLoop) {
+      this.refs.audio.currentTime = 0;
+    } else {
+      this.handleNext();
+    }
   }
 
   audioTimeUpdate() {
