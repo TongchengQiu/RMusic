@@ -45,6 +45,8 @@
     "rimraf": "^2.5.2",
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
+    "superagent": "^1.8.3",
+    "superagent-bluebird-promise": "^3.0.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1"

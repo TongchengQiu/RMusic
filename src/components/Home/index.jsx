@@ -1,7 +1,7 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
 
 import MusicPlayer from '../MusicPlayer';
+import UploadContainer from '../UploadContainer';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -23,10 +23,15 @@ export default class Home extends React.Component {
     });
   }
 
+  updateSuccess(res) {
+    console.log(res.key);
+  }
+
   render() {
+    /* eslint max-len: ["error", 2000, 2] */
     return (
       <div className="view-home">
-        <button onClick={() => { browserHistory.goBack(); }}>back</button>
+        <UploadContainer updateSuccess={(res) => this.updateSuccess(res)} />
         <MusicPlayer data={this.state.data} next={() => this.test()} />
       </div>
     );

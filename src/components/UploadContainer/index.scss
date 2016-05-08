@@ -1,0 +1,54 @@
+@import "../../assets/styles/variables.scss";
+.view-home {
+  height: 100%;
+}
+.upload-container {
+  width: 40%;
+  height: 100%;
+  float: right;
+  padding: 5%;
+  .dropped-files {
+    width: 100%;
+    h3 {
+      margin: 0;
+      font-size: 16px;
+      color: #333;
+      font-weight: normal;
+      padding: 1em 0;
+    }
+    ul {
+      list-style: none;
+      li {
+        color: #666;
+        font-size: 13px;
+        .name {
+          display: block;
+        }
+        .progress-box {
+          width: 100%;
+          text-align: center;
+          padding-top: 10px;
+          padding-right: 35px;
+          position: relative;
+          .bar {
+            display: inline-block;
+            vertical-align: middle;
+            width: 100%;
+            height: 5px;
+            background: $color-progress-wrap;
+            .inner {
+              height: 100%;
+              background: $color-progress-inner;
+            }
+          }
+          .percent {
+            display: inline-block;
+            vertical-align: middle;
+            position: absolute;
+            right: 0;
+          }
+        }
+      }
+    }
+  }
+}
