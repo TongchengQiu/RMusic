@@ -1,6 +1,9 @@
 import * as constants from '../constants';
-import { browserHistory } from 'react-router';
+import { useRouterHistory } from 'react-router';
+import { createHashHistory } from 'history';
 import AV from 'avoscloud-sdk';
+
+const appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
 
 const appId = 'OsU9BY2wgNjAgBMsfGjdBgW5-gzGzoHsz';
 const appKey = 'JV4qaALRgFh8rL3tJVf2KBgr';
@@ -16,7 +19,9 @@ export function login(username, password) {
     AV.User.logIn(username, password)
     .then((user) => {
       console.log(user);
-      browserHistory.replace('/home');
+      appHistory.replace({
+        pathname: '/home'
+      });
       dispatch({
         type: constants.LOGGED_IN,
         username,
@@ -34,7 +39,7 @@ export function login(username, password) {
 export function logout() {
   return dispatch => {
     AV.User.logOut();
-    browserHistory.replace('/login');
+    appHistory.replace('/login');
     dispatch({
       type: constants.LOGGED_OUT
     });
@@ -71,7 +76,7 @@ export function register(username, password) {
       });
       // dispatch(login(username, password));
       setTimeout(() => {
-        browserHistory.replace('/home');
+        appHistory.replace('/home');
       }, 500);
     }).catch((err) => {
       if (err.code === 202) {

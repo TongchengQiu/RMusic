@@ -25,7 +25,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     chunkFilename: '[id].js',
-    publicPath: '/static/',
+    // publicPath: '/static/',
   },
   module: {
     preLoaders: [
@@ -62,7 +62,7 @@ module.exports = {
       ReactDOM: 'react-dom'
     }),
     new HtmlWebpackPlugin({
-      filename: './index.html',
+      filename: 'index.html',
       template: './src/index.html',
       inject: true
     }),
