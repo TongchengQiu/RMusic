@@ -1,14 +1,13 @@
-var webpack = require('webpack');
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var OpenBrowserPlugin = require('open-browser-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
-var devConf = require('./conf.js').dev;
+const devConf = require('./conf.js').dev;
 
-var projectRoot = path.resolve(__dirname, './')
+const projectRoot = path.resolve(__dirname, './');
 
-var outputDir = './dist';
-var entry = './src/index.js';
+const entry = './src/index.js';
 
 module.exports = {
   target: 'web',
@@ -21,12 +20,9 @@ module.exports = {
     port: devConf.port
   },
   entry: [
-    entry,
-    'webpack/hot/dev-server',
-    'webpack-dev-server/client?http://localhost:' + devConf.port
+    entry
   ],
   output: {
-    path: outputDir + '/static',
     filename: '[name].js',
     chunkFilename: '[id].js',
     publicPath: '/static/',
@@ -56,7 +52,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff2?|eot|ttf|otf)(\?.*)?$/,
-        loaders: ['url?limit=102&name=[name].[hash:7].[ext]']
+        loaders: ['url?limit=10240&name=[name].[hash:7].[ext]']
       }
     ]
   },
@@ -66,11 +62,13 @@ module.exports = {
       ReactDOM: 'react-dom'
     }),
     new HtmlWebpackPlugin({
-      filename: __dirname + '/dist/index.html',
+      filename: './index.html',
       template: './src/index.html',
       inject: true
     }),
-    new OpenBrowserPlugin({ url: 'http://localhost:' + devConf.port })
+    new OpenBrowserPlugin({
+      url: `http://localhost:${devConf.port}`
+    })
   ],
   resolve: {
     extensions: ['', '.js', '.jsx'],

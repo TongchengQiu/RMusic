@@ -1,8 +1,9 @@
-var path = require('path');
+const path = require('path');
+
 module.exports = {
   build: {
-    index: path.resolve(__dirname, '../RMusic-p/index.html'),
-    assetsRoot: path.resolve(__dirname, '../RMusic-p'),
+    assetsRoot: path.resolve(__dirname, './dist'),
+    index: path.resolve(__dirname, './dist/index.html'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     productionSourceMap: false

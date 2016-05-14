@@ -1,19 +1,20 @@
-var webpack = require('webpack');
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var config = require('./conf.js');
-var projectRoot = path.resolve(__dirname, './')
+const config = require('./conf.js');
+const projectRoot = path.resolve(__dirname, './');
 
-var entry = './src/index.js';
+const entryFile = './src/index.js';
 
 module.exports = {
   target: 'web',
-  entry: entry,
+  entry: entryFile,
   output: {
     path: config.build.assetsRoot,
     filename: path.join(config.build.assetsSubDirectory, '[name].[chunkhash].js'),
-    chunkFilename: path.join(config.build.assetsSubDirectory, '[id].[chunkhash].js')
+    chunkFilename: path.join(config.build.assetsSubDirectory, '[id].[chunkhash].js'),
+    publicPath: config.assetsPublicPath
   },
   module: {
     preLoaders: [
@@ -40,7 +41,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff2?|eot|ttf|otf)(\?.*)?$/,
-        loaders: ['url?limit=102&name='+path.join(config.build.assetsSubDirectory, '[name].[hash:7].[ext]')]
+        loaders: [`url?limit=102&name=${path.join(config.build.assetsSubDirectory, '[name].[hash:7].[ext]')}`]
       }
     ]
   },
@@ -59,11 +60,6 @@ module.exports = {
         removeAttributeQuotes: true
       }
     }),
-    // new webpack.DefinePlugin({
-    //   'process.env': {
-    //     NODE_ENV: '"production"'
-    //   }
-    // }),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false,
@@ -71,7 +67,7 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('production')
+        NODE_ENV: JSON.stringify('production')
       },
     }),
     new webpack.optimize.OccurenceOrderPlugin()
