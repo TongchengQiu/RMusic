@@ -48,9 +48,13 @@ export default class MusicPlayer extends React.Component {
 
   audioTimeUpdate() {
     const audio = this.refs.audio;
+    if (!audio) {
+      return false;
+    }
     this.setState({
       nowTime: audio.currentTime
     });
+    return true;
   }
 
   handlePlay() {

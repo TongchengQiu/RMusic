@@ -29,8 +29,27 @@ class Register extends React.Component {
     });
   }
 
+  handleClearErr(type) {
+    this.setState({
+      [`${type}Err`]: ''
+    });
+  }
+
   handleSubmit(e) {
     e.preventDefault();
+    const { username, password } = this.state;
+    if (!username) {
+      this.setState({
+        usernameErr: '请输入用户名'
+      });
+      return false;
+    }
+    if (!password) {
+      this.setState({
+        usernameErr: '请输入密码'
+      });
+      return false;
+    }
     this.props.register(this.state.username, this.state.password);
     return false;
   }
@@ -49,7 +68,8 @@ class Register extends React.Component {
               name="username"
               autoFocus="true"
               value={username}
-              onChange={(e) => { this.handleUsernameChange(e); }}
+              onChange={e => this.handleUsernameChange(e)}
+              onFocus={() => this.handleClearErr('username')}
             />
             {usernameErr && <span className="err">{usernameErr}</span>}
           </div>
@@ -60,7 +80,8 @@ class Register extends React.Component {
               type="password"
               name="password"
               value={password}
-              onChange={(e) => { this.handlePasswordChange(e); }}
+              onChange={e => this.handlePasswordChange(e)}
+              onFocus={() => this.handleClearErr('password')}
             />
             {passwordErr && <span className="err">{passwordErr}</span>}
           </div>
@@ -70,12 +91,13 @@ class Register extends React.Component {
               type="submit"
               value={`注册${(user.get('isRegistering') ? '...' : '')}`}
               disabled={user.get('isRegistering')}
-              onClick={(e) => { this.handleSubmit(e); }}
+              onClick={e => this.handleSubmit(e)}
+              onFocus={() => this.handleClearErr('password')}
             />
             {user.get('registerError') && <span className="err">{user.get('registerError')}</span>}
             <Link className="link-to" to="/login">登录</Link>
           </div>
-          {!user.get('isRegisterSuccess') && <div className="success-tip">注册成功</div>}
+          {user.get('isRegisterSuccess') && <div className="success-tip">注册成功</div>}
         </form>
       </div>
     );

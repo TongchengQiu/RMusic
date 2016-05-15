@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, browserHistory } from 'react-router';
+import { Link, IndexLink, browserHistory } from 'react-router';
 
 require('./index.scss');
 
@@ -20,10 +20,19 @@ export default function Header({ username, logout }) {
             退出
           </a>
       }
-      {username && <Link to="/home" className="username">{username}</Link>}
-      {!username && <Link to="/register">注册</Link>}
-      {!username && <Link to="/login">登录</Link>}
-      <Link to="/">首页</Link>
+      {
+        username &&
+          <Link to="/home" className="username" activeClassName="active">{username}</Link>
+      }
+      {
+        !username &&
+          <Link to="/register" activeClassName="active">注册</Link>
+      }
+      {
+        !username &&
+          <Link to="/login" activeClassName="active">登录</Link>
+      }
+      <IndexLink to="/" activeClassName="active">首页</IndexLink >
     </header>
   );
 }

@@ -2,19 +2,26 @@
 
 .view-register {
   width: 100%;
-  padding-top: 100px;
+  height: 100%;
+  position: relative;
   .form-register {
+    position: absolute;
+    max-width: 100%;
     width: 400px;
+    padding: 0 1rem;
     margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -75%);
     .input-group {
       width: 100%;
-      height: 80px;
+      height: 6.2rem;
       .ipt {
         width: 100%;
-        height: 55%;
+        height: 3.5rem;
         outline: none;
         padding: 0 1em;
-        font-size: 16px;
+        font-size: 1.3rem;
         border: 1px solid #ccc;
         &:focus {
           border: 1px solid #666;
@@ -22,7 +29,8 @@
       }
       .submit {
         width: 60%;
-        height: 55%;
+        height: 3.5rem;
+        font-size: 1.3rem;
         background: $color-vice;
         outline: none;
         border: 0;
@@ -39,20 +47,19 @@
       }
       .err {
         width: 100%;
-        font-size: 13px;
+        font-size: 1rem;
         color: $color-err;
         line-height: 2.2em;
-        padding-left: 10px;
+        padding-left: .8rem;
       }
       .link-to {
-        color: #333;
         float: right;
-        font-size: 15px;
-        margin-top: 12px;
+        height: 3.5rem;
+        padding-right: .5rem;
+        line-height: 3.5rem;
+        font-size: 1.1rem;
+        color: #333;
       }
     }
-  }
-  .success-tip {
-    color: $color-main;  
   }
 }
