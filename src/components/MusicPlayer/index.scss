@@ -29,11 +29,13 @@
         content: ' ';
         display: block;
         position: absolute;
-        border-top: 8px solid transparent;
-        border-bottom: 8px solid transparent;
-        border-left: 14px solid rgba(255, 255, 255, .7);
-        left: 8px;
-        top: 5px;
+        border-top: .6rem solid transparent;
+        border-bottom: .6rem solid transparent;
+        border-left: 1rem solid rgba(255, 255, 255, .7);
+        left: 50%;
+        top: 50%;
+        margin-top: -0.6rem;
+        margin-left: -0.4rem;
       }
       &:hover {
         border: 2px solid rgba(255, 255, 255, .85);
@@ -59,15 +61,15 @@
           display: block;
           position: absolute;
           width: 2px;
-          height: 14px;
+          height: 60%;
           background: rgba(255, 255, 255, 0.7);
-          top: 6px;
+          top: 20%;
         }
         &:after {
-          left: 9px;
+          left: 35%;
         }
         &:before {
-          right: 9px;
+          right: 35%;
         }
       }
     }

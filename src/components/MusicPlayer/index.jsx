@@ -13,13 +13,15 @@ export default class MusicPlayer extends React.Component {
       isLoop: false,
       volumn: 3,
       isVolumeShow: false,
-      isMuted: false
+      isMuted: false,
+      isLoading: false
     };
   }
 
   componentDidMount() {
     const audio = this.refs.audio;
     audio.addEventListener('ended', this.audioEnd.bind(this), false);
+    audio.addEventListener('loadstart', this.audioLoadStart.bind(this), false);
     audio.addEventListener('loadedmetadata', this.audioLoadedMetaData.bind(this), false);
     audio.addEventListener('timeupdate', this.audioTimeUpdate.bind(this), false);
     audio.volume = (this.state.volumn / 5).toFixed(1);
@@ -28,8 +30,15 @@ export default class MusicPlayer extends React.Component {
   componentWillUnmount() {
     const audio = this.refs.audio;
     audio.removeEventListener('ended', this.audioEnd.bind(this), false);
+    audio.removeEventListener('loadstart', this.audioLoadStart.bind(this), false);
     audio.removeEventListener('loadedmetadata', this.audioLoadedMetaData.bind(this), false);
     audio.removeEventListener('timeupdate', this.audioTimeUpdate.bind(this), false);
+  }
+
+  audioLoadStart() {
+    this.setState({
+      isLoading: true
+    });
   }
 
   audioLoadedMetaData() {
@@ -38,7 +47,8 @@ export default class MusicPlayer extends React.Component {
       return false;
     }
     this.setState({
-      allTime: audio.duration
+      allTime: audio.duration,
+      isLoading: false
     });
     return true;
   }
@@ -79,10 +89,22 @@ export default class MusicPlayer extends React.Component {
   }
 
   handlePrev() {
+    this.setState({
+      allTime: 0,
+      nowTime: 0,
+      isPlay: false,
+      isLoading: true
+    });
     this.props.prev();
   }
 
   handleNext() {
+    this.setState({
+      allTime: 0,
+      nowTime: 0,
+      isPlay: false,
+      isLoading: true
+    });
     this.props.next();
   }
 
@@ -174,7 +196,7 @@ export default class MusicPlayer extends React.Component {
 
         </div>
         <div className="progress-box">
-          <div className="music-name">{data ? data.name : '无'}</div>
+          <div className="music-name">{data ? data.name.substr(0, 10) : '无'}</div>
           <div className="progress-bar">
             <div
               className="progress-inner"

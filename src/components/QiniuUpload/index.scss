@@ -1,12 +1,12 @@
 .qiniu-upload {
   width: 100%;
-  height: 200px;
+  height: 100%;
   margin: 0 auto;
   border: 2px dashed #ccc;
   border-radius: 5px;
   color: #aaa;
   cursor: pointer;
-  margin-bottom: 20px;
+  overflow: hidden;
   &:hover {
     color: darken(#aaa, 10%);
     border: 2px dashed darken(#aaa, 10%);
