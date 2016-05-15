@@ -33,9 +33,14 @@ export default class MusicPlayer extends React.Component {
   }
 
   audioLoadedMetaData() {
+    const audio = this.refs.audio;
+    if (!audio) {
+      return false;
+    }
     this.setState({
-      allTime: this.refs.audio.duration
+      allTime: audio.duration
     });
+    return true;
   }
 
   audioEnd() {
@@ -58,6 +63,9 @@ export default class MusicPlayer extends React.Component {
   }
 
   handlePlay() {
+    if (!this.props.data) {
+      return false;
+    }
     this.setState({
       isPlay: !this.state.isPlay
     }, () => {
@@ -67,6 +75,7 @@ export default class MusicPlayer extends React.Component {
         this.refs.audio.play();
       }
     });
+    return true;
   }
 
   handlePrev() {
@@ -118,7 +127,7 @@ export default class MusicPlayer extends React.Component {
     return (
       <div className="music-player">
         <audio
-          src={data.src}
+          src={data && data.src}
           autoPlay
           loop={isLoop}
           style={{ display: 'none' }}
@@ -126,28 +135,19 @@ export default class MusicPlayer extends React.Component {
         >
         </audio>
         <div className="options-box">
+          <div
+            className="play-type"
+            onClick={() => this.handleType()}
+            title={isLoop ? '单曲循环' : '顺序播放'}
+          >
+            {isLoop ? '♳' : '♻︎'}
+          </div>
           <div className="prev-btn" onClick={(e) => this.handlePrev(e)} />
           <div
             className={`play-btn ${isPlay ? 'play' : 'pause'}`}
             onClick={(e) => this.handlePlay(e)}
           />
           <div className="next-btn" onClick={(e) => this.handleNext(e)} />
-        </div>
-        <div className="progress-box">
-          <div className="music-name">{data.name}</div>
-          <div className="progress-bar">
-            <div
-              className="progress-inner"
-              style={{
-                width: `${(nowTime / allTime) * 100}%`
-              }}
-            />
-          </div>
-          <div className="show-times">
-            <span>{this.transformTime(nowTime)}</span>
-            <span>/</span>
-            <span>{this.transformTime(allTime)}</span>
-          </div>
           <div className="volume-box">
             <span className="name" onClick={() => this.toggleVolume()}>音量</span>
             {
@@ -171,13 +171,23 @@ export default class MusicPlayer extends React.Component {
               {isMuted ? '🔇' : '🔊'}
             </span>
           </div>
+
         </div>
-        <div
-          className="play-type"
-          onClick={() => this.handleType()}
-          title={isLoop ? '单曲循环' : '顺序播放'}
-        >
-          {isLoop ? '♳' : '♻︎'}
+        <div className="progress-box">
+          <div className="music-name">{data ? data.name : '无'}</div>
+          <div className="progress-bar">
+            <div
+              className="progress-inner"
+              style={{
+                width: `${(nowTime / allTime) * 100}%`
+              }}
+            />
+          </div>
+          <div className="show-times">
+            <span>{this.transformTime(nowTime)}</span>
+            <span>/</span>
+            <span>{this.transformTime(allTime)}</span>
+          </div>
         </div>
       </div>
     );
